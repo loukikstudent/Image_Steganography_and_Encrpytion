@@ -1,0 +1,7 @@
+antiorm==1.2.1
+db==0.1.1
+db-sqlite3==0.0.1
+des==1.0.5
+dnspython==2.0.0
+email-validator==1.1.1
+idna==2.10
