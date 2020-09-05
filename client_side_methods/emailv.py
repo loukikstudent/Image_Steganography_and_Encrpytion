@@ -30,4 +30,3 @@ def check_mail(email: str):
     return is_valid
 
 if __name__=="__main__":
-    print(check_mail("loukik.aiesec@gmail.com"))
