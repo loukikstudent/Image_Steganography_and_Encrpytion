@@ -1,7 +1,6 @@
-import sqlite3
 import logging
+import sqlite3
 import uuid
-from functools import wraps
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -55,7 +54,7 @@ class RD_Manager:
 
     @create_connection
     def create_table(self,cur,**kwargs):
-        query = "CREATE TABLE d3 (UUID BLOB NOT NULL UNIQUE PRIMARY KEY , KEY1 string NOT NULL, KEY2 string NOT NULL, KEY3 string NOT NULL,DATA string NOT NULL );"
+        query = "CREATE TABLE d3 (UUID BLOB NOT NULL UNIQUE PRIMARY KEY , KEY string NOT NULL,DATA string NOT NULL );"
         cur.execute(query)
         logging.info("D3 Table Connected")
 
@@ -63,14 +62,14 @@ class RD_Manager:
     def add(self, cur,**kwargs):
         id = self.gen_uuid()
         query = "INSERT INTO d3 VALUES (?,?,?,?,?)"
-        cur.execute(query, (id, kwargs['key1'], kwargs['key2'], kwargs['key3'], kwargs['data'],))
+        cur.execute(query, (id, kwargs['key'], kwargs['data'],))
         logging.info(f"Entry updated for id: {id}")
 
 
     @create_connection
     def view(self, cur, **kwargs):
         query = "SELECT data FROM d3 WHERE uuid=? and key1=? and key2=? and key3=?"
-        res = cur.execute(query,(kwargs['id'],kwargs['key1'],kwargs['key2'],kwargs['key3'],)).fetchone()
+        res = cur.execute(query, (kwargs['id'], kwargs['key'],)).fetchone()
         logging.info(f"Entry with id: {kwargs['id']} accessed")
         return res
 

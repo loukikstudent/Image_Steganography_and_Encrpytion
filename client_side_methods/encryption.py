@@ -16,6 +16,11 @@ def TripleDes_Encryption24(data: A, key: A) -> A:
     return encrypted_data
 
 
+def TripleDes_Decryption24(enc_data: A, key: A) -> A:
+    decrypted_data = triple_des(key).decrypt(enc_data, padmode=PAD_PKCS5)
+    return decrypted_data
+
+
 def Key_Encryption(keys: List[A]) -> List[A]:
     """
 

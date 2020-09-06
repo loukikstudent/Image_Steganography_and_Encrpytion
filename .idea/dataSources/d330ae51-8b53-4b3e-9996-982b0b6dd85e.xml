@@ -10,67 +10,26 @@
     <collation id="3" parent="1" name="BINARY"/>
     <collation id="4" parent="1" name="NOCASE"/>
     <collation id="5" parent="1" name="RTRIM"/>
-    <table id="6" parent="2" name="d3"/>
-    <table id="7" parent="2" name="sqlite_master">
+    <table id="6" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <column id="8" parent="6" name="UUID">
-      <Position>1</Position>
-      <DataType>BLOB|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="9" parent="6" name="KEY1">
-      <Position>2</Position>
-      <DataType>string|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="10" parent="6" name="KEY2">
-      <Position>3</Position>
-      <DataType>string|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="11" parent="6" name="KEY3">
-      <Position>4</Position>
-      <DataType>string|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="12" parent="6" name="DATA">
-      <Position>5</Position>
-      <DataType>string|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="13" parent="6" name="sqlite_autoindex_d3_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>UUID</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
-    <key id="14" parent="6">
-      <ColNames>UUID</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>sqlite_autoindex_d3_1</UnderlyingIndexName>
-    </key>
-    <key id="15" parent="6">
-      <ColNames>UUID</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_d3_1</UnderlyingIndexName>
-    </key>
-    <column id="16" parent="7" name="type">
+    <column id="7" parent="6" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="17" parent="7" name="name">
+    <column id="8" parent="6" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="18" parent="7" name="tbl_name">
+    <column id="9" parent="6" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="19" parent="7" name="rootpage">
+    <column id="10" parent="6" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="20" parent="7" name="sql">
+    <column id="11" parent="6" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
