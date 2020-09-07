@@ -1,1 +1,3 @@
 venv/
+client_side_methods/token.pickle
+client_side_methods/credentials.json
