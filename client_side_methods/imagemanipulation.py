@@ -1,8 +1,8 @@
 import base64
 from typing import TypeVar
 
-from encryption import TripleDes_Encryption24, TripleDes_Decryption24
-from keygen import generate_keys
+from .encryption import TripleDes_Encryption24, TripleDes_Decryption24
+from .keygen import generate_keys
 
 A = TypeVar('A', str, bytes)
 
@@ -23,6 +23,7 @@ def Image_Decryption(encrypted_image: A, key: A, path: str, id: A):
     data = TripleDes_Decryption24(encrypted_image, key)
     with open(path + f"/{id}.png", 'wb') as fh:
         fh.write(base64.decodebytes(data))
+    return data
 
 
 if __name__ == "__main__":

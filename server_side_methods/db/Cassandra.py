@@ -19,9 +19,10 @@ class Cassandra_db:
         self.cluster = Cluster(execution_profiles={EXEC_PROFILE_DEFAULT: self.profile})
 
         # Checking if keyspace exists or not
+        # noinspection PyBroadException
         try:
             self.session = self.cluster.connect('d3')
-        except:
+        except Exception as e:
             self.session = self.cluster.connect()
             self.session.execute(
                 "CREATE KEYSPACE d3 WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3} AND durable_writes = 'true';")

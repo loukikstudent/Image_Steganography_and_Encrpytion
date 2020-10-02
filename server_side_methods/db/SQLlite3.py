@@ -16,15 +16,14 @@ class RD_Manager:
         if not self.check_db():
             self.create_table()
 
-
-    def create_connection(func) :
+    def create_connection(func):
         def wrapper(inst, *args, **kwargs):
             cnn = sqlite3.connect(inst.db_name)
             logging.debug(f"Connetion Created for func: {func.__name__}")
             cur = cnn.cursor()
             logging.debug(f"Cursor Created for func: {func.__name__} with args: {args} and kwargs: {kwargs}")
             try:
-                r = func(inst,cur, *args, **kwargs)
+                r = func(inst, cur, *args, **kwargs)
             except Exception as e:
                 logging.error(f"Function ({func._name__}) Execution failed")
                 logging.info("Initiating Roll Back")
@@ -38,47 +37,46 @@ class RD_Manager:
                 cnn.close()
                 logging.debug(f"Connection Close for func: {func.__name__} ")
             return r
+
         return wrapper
 
     @create_connection
-    def check_db(self, cur,**kwargs):
+    def check_db(self, cur, **kwargs):
         """
 
         :type cur: sqlite3.connection.cursor
         """
-        if cur.execute('SELECT name FROM sqlite_master where name = ?',('d3',)).fetchone():
+        if cur.execute('SELECT name FROM sqlite_master where name = ?', ('d3',)).fetchone():
             logging.info("Table D3 not found!")
             return True
         return False
 
-
     @create_connection
-    def create_table(self,cur,**kwargs):
+    def create_table(self, cur, **kwargs):
         query = "CREATE TABLE d3 (UUID BLOB NOT NULL UNIQUE PRIMARY KEY , KEY string NOT NULL,DATA string NOT NULL );"
         cur.execute(query)
-        logging.info("D3 Table Connected")
+        logging.info("D3 Table Created")
 
     @create_connection
-    def add(self, cur,**kwargs):
+    def add(self, cur, **kwargs):
         id = self.gen_uuid()
-        query = "INSERT INTO d3 VALUES (?,?,?,?,?)"
+        query = "INSERT INTO d3 VALUES (?,?,?)"
         cur.execute(query, (id, kwargs['key'], kwargs['data'],))
         logging.info(f"Entry updated for id: {id}")
-
+        return id
 
     @create_connection
     def view(self, cur, **kwargs):
-        query = "SELECT data FROM d3 WHERE uuid=? and key1=? and key2=? and key3=?"
+        query = "SELECT data FROM d3 WHERE uuid=? and key=?"
         res = cur.execute(query, (kwargs['id'], kwargs['key'],)).fetchone()
         logging.info(f"Entry with id: {kwargs['id']} accessed")
         return res
 
     @create_connection
-    def delete(self, cur,**kwargs):
+    def delete(self, cur, **kwargs):
         query = "DELETE from d3 where uuid = ?"
-        cur.execute(query,(kwargs['id'],))
+        cur.execute(query, (kwargs['id'],))
         logging.info(f"Entry with id: {kwargs['id']} from database")
-
 
     def gen_uuid(self):
         id = uuid.uuid4()

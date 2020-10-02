@@ -28,5 +28,3 @@ def check_mail(email: str):
     update_builtin_blacklist(force=False, background=True, callback=None)
     is_valid = validate_email(email_address=email, check_regex=True, smtp_timeout=10, dns_timeout=10, use_blacklist=True)
     return is_valid
-
-if __name__=="__main__":
