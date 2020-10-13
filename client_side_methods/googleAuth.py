@@ -16,6 +16,7 @@ def Authenticate():
     """Shows basic usage of the Gmail API.
     Lists the user's Gmail labels.
     """
+    global service
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -39,7 +40,6 @@ def Authenticate():
     service = build('gmail', 'v1', credentials=creds)
 
     # Call the Gmail API
-
     return service
 
 

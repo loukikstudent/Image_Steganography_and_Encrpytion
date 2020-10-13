@@ -39,7 +39,7 @@ class Cassandra_db:
     def add(self, jsonData: Dict[str, Any]):
         try:
             self.session.execute(
-                f"INSERT INTO {self.table_name} (uuid,key,data) VALUES (%(uuid)s,%(key)s,%(data)s) USING TTL 10;",
+                f"INSERT INTO {self.table_name} (uuid,key,data) VALUES (%(uuid)s,%(key)s,%(data)s) USING TTL 3600;",
                 json.loads(jsonData))
             return True
         except Exception as e:

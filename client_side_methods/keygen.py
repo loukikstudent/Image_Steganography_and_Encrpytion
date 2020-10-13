@@ -8,4 +8,4 @@ def generate_keys(size):
 
 
 if __name__=="__main__":
-    print(generate_keys(1,24))
+    print(generate_keys(24))

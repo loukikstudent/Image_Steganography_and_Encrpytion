@@ -2,7 +2,6 @@ import unittest
 from client_side_methods.emailv import validate_email
 from client_side_methods.keygen import generate_keys
 from client_side_methods.imagemanipulation import Image_Encryption, Image_Decryption, Image_Loader
-import os
 
 
 class TestClientSide(unittest.TestCase):
